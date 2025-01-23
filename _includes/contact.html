@@ -24,10 +24,10 @@
                                     <input type="email" class="form-control" placeholder="Your Email *" name="email" id="email" required data-validation-required-message="Please enter your email address.">
                                     <p class="help-block text-danger"></p>
                                 </div>
-                                <!-- <div class="control-group form-group">
-                                    <input type="tel" class="form-control" placeholder="Your Phone *" name="phone" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                <div class="control-group form-group">
+                                    <input type="tel" class="form-control" placeholder="Your Phone" name="phone" id="phone" />
                                     <p class="help-block text-danger"></p>
-                                </div> -->
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="control-group form-group">
@@ -36,8 +36,7 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            <!-- Honeypot Spam Protection -->
-                            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                            <div class="h-captcha" data-captcha="true"></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
                                 <button type="submit" class="btn btn-xl">Send Message</button>

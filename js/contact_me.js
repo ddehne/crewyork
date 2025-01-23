@@ -7,9 +7,18 @@ $(function() {
         },
         submitSuccess: function($form, event) {
             event.preventDefault(); // prevent default submit behaviour
+
+            // Captcha validation
+            const form = document.getElementById('contactForm');
+            const hCaptcha = form.querySelector('textarea[name=h-captcha-response]').value;
+            if (!hCaptcha) {
+                console.log('REJECTED')
+                return
+            }
             // get values from FORM
             var name = $("input#name").val();
             var email = $("input#email").val();
+            var phone = $("input#phone").val();
             var message = $("textarea#message").val();
             var firstName = name; // For Success/Failure Message
             // Check for white space in name for Success/Fail message
@@ -50,6 +59,7 @@ $(function() {
             method: "POST",
             body: JSON.stringify({ 
                 name: name,
+                phone: phone,
                 email: email,
                 message: message,
                 access_key: 'd950d18e-3a7f-42e9-8dce-6575a502c997',
