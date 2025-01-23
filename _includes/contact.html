@@ -8,13 +8,8 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <!-- action="https://api.web3forms.com/submit" method="POST" -->
-                    <form name="sentMessage" id="contactForm"  
-                    
-                     novalidate>
+                    <form name="sentMessage" id="contactForm" novalidate>
                         <div class="row">
-                            <!-- <input type="hidden" name="access_key" value=""> -->
-
                             <div class="col-md-6">
                                 <div class="control-group form-group">
                                     <input type="text" class="form-control" placeholder="Your Name *" name="name" id="name" required data-validation-required-message="Please enter your name.">
@@ -36,7 +31,13 @@
                                 </div>
                             </div>
                             <div class="clearfix"></div>
-                            <div class="h-captcha" data-captcha="true"></div>
+                            <div 
+                                id="captcha-el"
+                                class="h-captcha" 
+                                data-captcha="true"
+                                captchaFailure
+                                data-theme="dark"
+                                ></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
                                 <button type="submit" class="btn btn-xl">Send Message</button>
