@@ -170,6 +170,11 @@ fieldset[disabled] .btn-xl.active {
     background-color: #fff;
 }
 
+.navbar #logo-img {
+    width: 38px;
+    margin: 13px 0;
+}
+
 .navbar-default {
     border-color: transparent;
     background-color: #222;
