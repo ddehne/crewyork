@@ -5,7 +5,7 @@ $(function() {
         submitError: function($form, event, errors) {
             // additional error messages or events
         },
-        submitSuccess: function($form, event) {
+        submitSuccess: async function($form, event) {
             event.preventDefault(); // prevent default submit behaviour
             // get values from FORM
             var name = $("input#name").val();
@@ -17,41 +17,74 @@ $(function() {
             if (firstName.indexOf(' ') >= 0) {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
-            $.ajax({
-                url: "https://api.web3forms.com/submit",
-                type: "POST",
-                data: {
-                    name: name,
-                    phone: phone,
-                    email: email,
-                    message: message,
-                    access_key: 'd950d18e-3a7f-42e9-8dce-6575a502c997',
-                },
-                cache: false,
-                success: function() {
-                    // Success message
-                    $('#success').html("<div class='alert alert-success'>");
-                    $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#success > .alert-success')
-                        .append("<strong>Your message has been sent. </strong>");
-                    $('#success > .alert-success')
-                        .append('</div>');
+            const url = "https://api.web3forms.com/submit";
+            const myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
 
-                    //clear all fields
-                    $('#contactForm').trigger("reset");
-                },
-                error: function() {
-                    // Fail message
-                    $('#success').html("<div class='alert alert-danger'>");
-                    $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
-                        .append("</button>");
-                    $('#success > .alert-danger').append("<strong>Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!");
-                    $('#success > .alert-danger').append('</div>');
-                    //clear all fields
-                    $('#contactForm').trigger("reset");
-                },
-            })
+            const response = await fetch(url, {
+            method: "POST",
+            body: JSON.stringify({ 
+                name: name,
+                phone: phone,
+                email: email,
+                message: message,
+                access_key: 'd950d18e-3a7f-42e9-8dce-6575a502c997',
+             }),
+            headers: myHeaders,
+            });
+
+            console.log(response);
+            const successFunc = function() {
+                // Success message
+                $('#success').html("<div class='alert alert-success'>");
+                $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                    .append("</button>");
+                $('#success > .alert-success')
+                    .append("<strong>Your message has been sent. </strong>");
+                $('#success > .alert-success')
+                    .append('</div>');
+
+                //clear all fields
+                $('#contactForm').trigger("reset");
+            }
+
+            successFunc();
+
+            // $.ajax({
+            //     url: "https://api.web3forms.com/submit",
+            //     type: "POST",
+            //     data: {
+            //         name: name,
+            //         phone: phone,
+            //         email: email,
+            //         message: message,
+            //         access_key: 'd950d18e-3a7f-42e9-8dce-6575a502c997',
+            //     },
+            //     cache: false,
+            //     success: function() {
+            //         // Success message
+            //         $('#success').html("<div class='alert alert-success'>");
+            //         $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+            //             .append("</button>");
+            //         $('#success > .alert-success')
+            //             .append("<strong>Your message has been sent. </strong>");
+            //         $('#success > .alert-success')
+            //             .append('</div>');
+
+            //         //clear all fields
+            //         $('#contactForm').trigger("reset");
+            //     },
+            //     error: function() {
+            //         // Fail message
+            //         $('#success').html("<div class='alert alert-danger'>");
+            //         $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+            //             .append("</button>");
+            //         $('#success > .alert-danger').append("<strong>Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!");
+            //         $('#success > .alert-danger').append('</div>');
+            //         //clear all fields
+            //         $('#contactForm').trigger("reset");
+            //     },
+            // })
         },
         filter: function() {
             return $(this).is(":visible");
