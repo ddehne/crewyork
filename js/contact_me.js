@@ -18,13 +18,14 @@ $(function() {
                 firstName = name.split(' ').slice(0, -1).join(' ');
             }
             $.ajax({
-                url: "././mail/contact_me.php",
+                url: "https://api.web3forms.com/submit",
                 type: "POST",
                 data: {
                     name: name,
                     phone: phone,
                     email: email,
-                    message: message
+                    message: message,
+                    access_key: 'd950d18e-3a7f-42e9-8dce-6575a502c997',
                 },
                 cache: false,
                 success: function() {
