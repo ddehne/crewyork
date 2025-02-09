@@ -15,3 +15,20 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{ "/js/agency.js" | prepend: site.baseurl }}"></script>
+
+    <!-- <script src="{{ "/js/photoswipe/photoswipe-lightbox.umd.min.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ "/js/photoswipe/photoswipe.umd.min.js" | prepend: site.baseurl }}"></script> -->
+
+    <script type="module">
+      
+      import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe/dist/photoswipe-lightbox.esm.js';
+
+      const lightbox = new PhotoSwipeLightbox({
+      gallery: '#my-gallery',
+      children: 'a',
+      pswpModule: () => import('https://unpkg.com/photoswipe'),
+      });
+
+      lightbox.init();
+
+  </script>

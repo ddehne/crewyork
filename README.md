@@ -6,6 +6,15 @@ Agency Jekyll theme
 
 Agency theme based on [Agency bootstrap theme ](https://startbootstrap.com/template-overviews/agency/)
 
+# Prerequisites
+Jekyll requires the following:
+
+Ruby version 2.7.0 or higher
+RubyGems
+GCC and Make
+
+`gem install jekyll bundler`
+
 # How to use
 
 bundle exec jekyll serve --livereload
